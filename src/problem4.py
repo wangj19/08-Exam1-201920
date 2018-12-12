@@ -3,8 +3,8 @@ Exam 1, problem 4.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Jiadi Wang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -44,6 +44,29 @@ def run_test_problem4():
 
 
 def problem4(number_of_stairs, step_size, starting_point, window):
+    startdot = rg.Circle(starting_point, 3)
+    startdot.fill_color = 'black'
+    startdot.attach_to(window)
+    enddot = rg.Circle(rg.Point(starting_point.x + number_of_stairs*step_size, starting_point.y - number_of_stairs* step_size),3)
+    enddot.fill_color = 'black'
+    enddot.attach_to(window)
+    for k in range(number_of_stairs):
+        s_p = rg.Point(starting_point.x + k * step_size, starting_point.y - k * step_size)
+        m_p = rg.Point(starting_point.x + k * step_size, starting_point.y - (k + 1) * step_size)
+        e_p = rg.Point(starting_point.x + (k + 1) * step_size, starting_point.y - (k + 1) * step_size)
+        line1 = rg.Line(s_p,m_p)
+        line1.color = "magenta"
+        line1.thickness = 3
+        line1.attach_to(window)
+        line2 = rg.Line(m_p, e_p)
+        line2.color = 'black'
+        line2.thickness = 3
+        line2.attach_to(window)
+    window.render()
+
+
+
+
     """
     See   problem4_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -68,7 +91,7 @@ def problem4(number_of_stairs, step_size, starting_point, window):
       :type window:            rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # IMPORTANT: For PARTIAL CREDIT, you can draw just the black "bottoms"
     #            of the stair steps.
