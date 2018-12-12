@@ -3,8 +3,8 @@ Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Jiadi Wang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import testing_helper
 import time
@@ -17,7 +17,7 @@ def main():
 
 
 ###############################################################################
-# TODO: 2.  READ the doc-string for the  sum_of_digits  function defined below.
+# DONE: 2.  READ the doc-string for the  sum_of_digits  function defined below.
 # It is the same  sum_of_digits  function that you have seen before.
 # After you UNDERSTAND the doc-string (JUST the doc-string, NOT the code),
 # ASKING QUESTIONS AS NEEDED, change the above _TODO_ to DONE.
@@ -137,33 +137,38 @@ def run_test_problem3a():
 
 
 def problem3a(r, s):
-    """
-    What comes in:  Positive integers r and s, with r <= s.
-    What goes out:
-      -- Returns the sum of all the integers from r to s, inclusive,
-           for which the sum_of_digits in the cube of the integer is odd.
-    Side effects:   None.
-    Examples:
-      -- problem3a(6, 15) returns 6 + 10 + 13 + 14 (which is 43) because:
-          --  6 cubed is  216, whose sum of digits is  9, which is ODD.  (YES!)
-          --  7 cubed is  343, whose sum of digits is 10, which is NOT odd.
-          --  8 cubed is  512, whose sum of digits is  8, which is NOT odd.
-          --  9 cubed is  729, whose sum of digits is 18, which is NOT odd.
-          -- 10 cubed is 1000, whose sum of digits is  1, which is ODD.  (YES!)
-          -- 11 cubed is 1331, whose sum of digits is  8, which is NOT odd.
-          -- 12 cubed is 1728, whose sum of digits is 18, which is NOT odd.
-          -- 13 cubed is 2197, whose sum of digits is 19, which is ODD.  (YES!)
-          -- 14 cubed is 2744, whose sum of digits is 17, which is ODD.  (YES!)
-          -- 15 cubed is 3375, whose sum of digits is 18, which is NOT odd.
+    total = 0
+    for k in range(r,s+1):
+        if sum_of_digits(k ** 3) % 2 == 1:
+            total = total + k
+    return total
 
-      -- problem3a(2, 5) returns 3 because:
-          -- 2 cubed is     8, whose sum of digits is  8, which is NOT odd.
-          -- 3 cubed is    27, whose sum of digits is  9, which is ODD.  (YES!)
-          -- 4 cubed is    64, whose sum of digits is 10, which is NOT odd.
-          -- 5 cubed is   125, whose sum of digits is  8, which is NOT odd.
-    """
+    # What comes in:  Positive integers r and s, with r <= s.
+    # What goes out:
+    #   -- Returns the sum of all the integers from r to s, inclusive,
+    #        for which the sum_of_digits in the cube of the integer is odd.
+    # Side effects:   None.
+    # Examples:
+    #   -- problem3a(6, 15) returns 6 + 10 + 13 + 14 (which is 43) because:
+    #       --  6 cubed is  216, whose sum of digits is  9, which is ODD.  (YES!)
+    #       --  7 cubed is  343, whose sum of digits is 10, which is NOT odd.
+    #       --  8 cubed is  512, whose sum of digits is  8, which is NOT odd.
+    #       --  9 cubed is  729, whose sum of digits is 18, which is NOT odd.
+    #       -- 10 cubed is 1000, whose sum of digits is  1, which is ODD.  (YES!)
+    #       -- 11 cubed is 1331, whose sum of digits is  8, which is NOT odd.
+    #       -- 12 cubed is 1728, whose sum of digits is 18, which is NOT odd.
+    #       -- 13 cubed is 2197, whose sum of digits is 19, which is ODD.  (YES!)
+    #       -- 14 cubed is 2744, whose sum of digits is 17, which is ODD.  (YES!)
+    #       -- 15 cubed is 3375, whose sum of digits is 18, which is NOT odd.
+    #
+    #   -- problem3a(2, 5) returns 3 because:
+    #       -- 2 cubed is     8, whose sum of digits is  8, which is NOT odd.
+    #       -- 3 cubed is    27, whose sum of digits is  9, which is ODD.  (YES!)
+    #       -- 4 cubed is    64, whose sum of digits is 10, which is NOT odd.
+    #       -- 5 cubed is   125, whose sum of digits is  8, which is NOT odd.
+    # """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ###########################################################################
@@ -261,26 +266,31 @@ def run_test_problem3b():
 
 
 def problem3b(m, r):
-    """
-    What comes in:  A positive integer m and a number r.
-    What goes out:
-      -- Returns the sum that is the first  m  terms of the series
-           1/r  +  (2 / ((r+1) ** 2))  +  (3 / ((r+2) ** 3) + ...
-    Side effects:   None.
-    Examples:
-      -- problem3b(6, 4) returns
-           1/4  +  2/(5**2)  +  3/(6**3)  +  4/(7**4)  +  5/(8**5)  + 6/(9**6),
-           which is approximately 0.3457187393495064.
-      -- problem3b(3, 1) returns
-           1/1  +  2/(2 ** 2)  +  3/(3 ** 3), which is approximately 0.6111111.
-      -- problem3b(2, 35) returns
-           1/35  +  2/(36**2), which is approximately 0.03011463844797178.
-      -- problem3b(4, 0.1) returns
-           1/(0.1)  +  2/((1.1)**2)  +  3/((2.1)**3)  +  4/(3.1)**4)),
-           which is approximately 12.020144157845959.
-     """
+    total = 0
+    for k in range(1, m+1):
+        total = total + k / ((r + k - 1) ** (k))
+    return total
+
+
+# What comes in:  A positive integer m and a number r.
+    # What goes out:
+    #   -- Returns the sum that is the first  m  terms of the series
+    #        1/r  +  (2 / ((r+1) ** 2))  +  (3 / ((r+2) ** 3) + ...
+    # Side effects:   None.
+    # Examples:
+    #   -- problem3b(6, 4) returns
+    #        1/4  +  2/(5**2)  +  3/(6**3)  +  4/(7**4)  +  5/(8**5)  + 6/(9**6),
+    #        which is approximately 0.3457187393495064.
+    #   -- problem3b(3, 1) returns
+    #        1/1  +  2/(2 ** 2)  +  3/(3 ** 3), which is approximately 0.6111111.
+    #   -- problem3b(2, 35) returns
+    #        1/35  +  2/(36**2), which is approximately 0.03011463844797178.
+    #   -- problem3b(4, 0.1) returns
+    #        1/(0.1)  +  2/((1.1)**2)  +  3/((2.1)**3)  +  4/(3.1)**4)),
+    #        which is approximately 12.020144157845959.
+    #  """
     ###########################################################################
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     ###########################################################################
 
